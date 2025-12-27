@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/users.routes.js';
 import securityMiddleware from '#middleware/security.middleware.js';
 
 const app = express();
@@ -14,10 +15,9 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
-
 app.use(morgan('combined', {stream: {write: (message) => logger.info(message.trim() )} }))
 
-
+// Public routes (excluded from security middleware)
 app.get('/', (req, res) => {
   logger.info("Hello from Acquisitions!");
 
@@ -31,6 +31,18 @@ app.get('/health', (req,res) => {
 app.get('/api', (req,res) => {
   res.status(200).json({ message: 'Acquisition API is running' })
 })
+
+// Apply security middleware only to protected routes
+app.use((req, res, next) => {
+  // Skip security middleware for public routes
+  const publicPaths = ['/health', '/api/auth', '/', '/api'];
+  if (publicPaths.some(path => req.path === path || req.path.startsWith(path + '/'))) {
+    return next();
+  }
+  securityMiddleware(req, res, next);
+});
+
+app.use('/api/users', userRoutes);
 
 app.use('/api/auth', authRoutes);
 

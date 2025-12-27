@@ -17,7 +17,7 @@ export const createUser = async ({ name, email ,password, role = 'user'}) => {
         const existingUser = await db.select().from(users).where(eq(users.email, email)).limit(1);
 
         if(existingUser.length > 0 ) 
-            throw new Error('User already exists');
+            throw new Error('User with this email already exists');
 
         const password_hash = await hashPassword(password);
 
@@ -29,6 +29,33 @@ export const createUser = async ({ name, email ,password, role = 'user'}) => {
         return newUser;
     } catch (error) {
         logger.error('Error creating the user: ', error);
+        throw error;
+    }
+}
+
+export const verifyUser = async ({ email, password }) => {
+    try {
+        const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1);
+
+        if (!user) {
+            throw new Error('Invalid email or password');
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
+            throw new Error('Invalid email or password');
+        }
+
+        logger.info(`User ${user.email} authenticated successfully`);
+        return {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+        };
+    } catch (error) {
+        logger.error('Error verifying user: ', error);
         throw error;
     }
 }
