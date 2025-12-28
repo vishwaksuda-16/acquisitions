@@ -284,3 +284,47 @@
 {"level":"warn","message":"Access denied for user abcd@gmail.com with role user. Required: admin","service":"acquisitions-api"}
 {"level":"info","message":"::ffff:172.20.0.1 - - [27/Dec/2025:13:46:02 +0000] \"DELETE /api/users/3 HTTP/1.1\" 403 62 \"-\" \"HTTPie\"","service":"acquisitions-api"}
 {"level":"info","message":"::1 - - [27/Dec/2025:13:46:27 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [27/Dec/2025:13:46:58 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [27/Dec/2025:13:47:29 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [27/Dec/2025:13:48:00 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"error","message":"Error creating the user:  User with this email already exists","service":"acquisitions-api","stack":"Error: User with this email already exists\n    at createUser (file:///app/src/services/auth.service.js:20:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async signup (file:///app/src/controllers/auth.controller.js:21:22)"}
+{"level":"error","message":"Signup error:  User with this email already exists","service":"acquisitions-api","stack":"Error: User with this email already exists\n    at createUser (file:///app/src/services/auth.service.js:20:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async signup (file:///app/src/controllers/auth.controller.js:21:22)"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [27/Dec/2025:13:48:22 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 409 32 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"User abcd12@gmail.com created successfully","service":"acquisitions-api"}
+{"level":"info","message":"User registered successfully: abcd12@gmail.com","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [27/Dec/2025:13:48:29 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 102 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [27/Dec/2025:13:48:31 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [27/Dec/2025:13:49:02 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [27/Dec/2025:13:49:33 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [27/Dec/2025:13:50:04 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"error","message":"Error creating the user:  User with this email already exists","service":"acquisitions-api","stack":"Error: User with this email already exists\n    at createUser (file:///app/src/services/auth.service.js:20:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async signup (file:///app/src/controllers/auth.controller.js:21:22)"}
+{"level":"error","message":"Signup error:  User with this email already exists","service":"acquisitions-api","stack":"Error: User with this email already exists\n    at createUser (file:///app/src/services/auth.service.js:20:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async signup (file:///app/src/controllers/auth.controller.js:21:22)"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [27/Dec/2025:13:50:09 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 409 32 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"User abcd123@gmail.com created successfully","service":"acquisitions-api"}
+{"level":"info","message":"User registered successfully: abcd123@gmail.com","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [27/Dec/2025:13:50:13 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 103 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [27/Dec/2025:13:50:35 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"User abcd123@gmail.com authenticated successfully","service":"acquisitions-api"}
+{"level":"info","message":"User signed in successfully: abcd123@gmail.com","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [27/Dec/2025:13:50:59 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 200 115 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [27/Dec/2025:13:51:06 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"User authenticated: abcd123@gmail.com (admin)","service":"acquisitions-api"}
+{"level":"info","message":"Getting users...","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [27/Dec/2025:13:51:14 +0000] \"GET /api/users HTTP/1.1\" 200 1069 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"User authenticated: abcd123@gmail.com (admin)","service":"acquisitions-api"}
+{"level":"info","message":"Deleting user: 9","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [27/Dec/2025:13:51:31 +0000] \"DELETE /api/users/9 HTTP/1.1\" 403 75 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"User authenticated: abcd123@gmail.com (admin)","service":"acquisitions-api"}
+{"level":"info","message":"Deleting user: 8","service":"acquisitions-api"}
+{"level":"info","message":"User abcd12@gmail.com deleted successfully","service":"acquisitions-api"}
+{"level":"info","message":"User abcd12@gmail.com deleted successfully","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:172.20.0.1 - - [27/Dec/2025:13:51:37 +0000] \"DELETE /api/users/8 HTTP/1.1\" 200 112 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [27/Dec/2025:13:51:39 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [27/Dec/2025:13:52:11 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [27/Dec/2025:13:52:42 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [28/Dec/2025:06:52:55 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [28/Dec/2025:06:52:55 +0000] \"GET /api HTTP/1.1\" 200 40 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [28/Dec/2025:06:52:55 +0000] \"GET /nonexsistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [28/Dec/2025:06:55:52 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [28/Dec/2025:06:55:52 +0000] \"GET /api HTTP/1.1\" 200 40 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [28/Dec/2025:06:55:52 +0000] \"GET /nonexsistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"acquisitions-api"}
