@@ -11,32 +11,46 @@ import securityMiddleware from '#middleware/security.middleware.js';
 const app = express();
 
 app.use(helmet());
-app.use(cors())
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(morgan('combined', {stream: {write: (message) => logger.info(message.trim() )} }))
+app.use(
+  morgan('combined', {
+    stream: { write: message => logger.info(message.trim()) },
+  })
+);
 
 // Public routes (excluded from security middleware)
 app.get('/', (req, res) => {
-  logger.info("Hello from Acquisitions!");
+  logger.info('Hello from Acquisitions!');
 
   res.status(200).send('Hello from Aquisitions!');
 });
 
-app.get('/health', (req,res) => {
-  res.status(200).json({ status: 'OK', timestamp: new Date().toISOString(), uptime: process.uptime() });
-})
+app.get('/health', (req, res) => {
+  res
+    .status(200)
+    .json({
+      status: 'OK',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+    });
+});
 
-app.get('/api', (req,res) => {
-  res.status(200).json({ message: 'Acquisition API is running' })
-})
+app.get('/api', (req, res) => {
+  res.status(200).json({ message: 'Acquisition API is running' });
+});
 
 // Apply security middleware only to protected routes
 app.use((req, res, next) => {
   // Skip security middleware for public routes
   const publicPaths = ['/health', '/api/auth', '/', '/api'];
-  if (publicPaths.some(path => req.path === path || req.path.startsWith(path + '/'))) {
+  if (
+    publicPaths.some(
+      path => req.path === path || req.path.startsWith(path + '/')
+    )
+  ) {
     return next();
   }
   securityMiddleware(req, res, next);
@@ -46,8 +60,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 
 app.use((req, res) => {
-  res.status(404).json({error: "Route not found"})
-})
-
+  res.status(404).json({ error: 'Route not found' });
+});
 
 export default app;

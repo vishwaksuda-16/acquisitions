@@ -33,23 +33,29 @@ const securityMiddleware = async (req, res, next) => {
     const decision = await client.protect(req);
 
     // Only enforce bot detection in production mode
-    if (decision.isDenied() && decision.reason.isBot() && process.env.NODE_ENV === 'production') {
+    if (
+      decision.isDenied() &&
+      decision.reason.isBot() &&
+      process.env.NODE_ENV === 'production'
+    ) {
       logger.warn('Bot request blocked', {
         ip: req.ip,
         userAgent: req.get('User-Agent'),
         path: req.path,
       });
 
-      return res
-        .status(403)
-        .json({
-          error: 'Forbidden',
-          message: 'Automated requests are not allowed',
-        });
+      return res.status(403).json({
+        error: 'Forbidden',
+        message: 'Automated requests are not allowed',
+      });
     }
 
     // Shield blocking is disabled in DRY_RUN mode
-    if (decision.isDenied() && decision.reason.isShield() && process.env.NODE_ENV === 'production') {
+    if (
+      decision.isDenied() &&
+      decision.reason.isShield() &&
+      process.env.NODE_ENV === 'production'
+    ) {
       logger.warn('Shield Blocked request', {
         ip: req.ip,
         userAgent: req.get('User-Agent'),
@@ -57,12 +63,10 @@ const securityMiddleware = async (req, res, next) => {
         method: req.method,
       });
 
-      return res
-        .status(403)
-        .json({
-          error: 'Forbidden',
-          message: 'Request blocked by security policy',
-        });
+      return res.status(403).json({
+        error: 'Forbidden',
+        message: 'Request blocked by security policy',
+      });
     }
 
     // Rate limiting is disabled in DRY_RUN mode, but check anyway for safety
@@ -85,19 +89,20 @@ const securityMiddleware = async (req, res, next) => {
   } catch (e) {
     // Log error but don't block requests in development if Arcjet fails
     const isDevelopment = process.env.NODE_ENV !== 'production';
-    
+
     if (isDevelopment) {
-      logger.warn('Arcjet middleware error (continuing in dev mode):', e.message);
+      logger.warn(
+        'Arcjet middleware error (continuing in dev mode):',
+        e.message
+      );
       return next(); // Continue in development even if Arcjet fails
     }
-    
+
     logger.error('Arcjet middleware error:', e);
-    res
-      .status(500)
-      .json({
-        error: 'Internal server error',
-        message: 'Something went wrong with security middleware',
-      });
+    res.status(500).json({
+      error: 'Internal server error',
+      message: 'Something went wrong with security middleware',
+    });
   }
 };
 export default securityMiddleware;
